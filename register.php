@@ -5,7 +5,7 @@ $error = '';
 $success = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Capture user input (NO sanitization = vulnerable)
+    // Capture user input
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif ($password !== $confirm_password) {
         $error = 'Passwords do not match.';
     } else {
-        // Check for duplicate accounts (VULNERABLE to SQL Injection)
+        // Check for duplicate accounts
         $check_query = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
         $result = $conn->query($check_query);
 
         if ($result->num_rows > 0) {
             $error = 'Email or Username already exists.';
         } else {
-            // Insert user data (VULNERABLE to SQL Injection)
+            // Insert user data 
             $insert_query = "INSERT INTO users (username, email, password) 
                              VALUES ('$username', '$email', '$password')";
             if ($conn->query($insert_query)) {

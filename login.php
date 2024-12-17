@@ -1,4 +1,30 @@
 
+<?php
+require_once 'database.php';
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Capture user input 
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    // Check user credentials
+    $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $result = $conn->query($query);
+
+    if ($result && $result->num_rows > 0) {
+        $user = $result->fetch_assoc();
+        $_SESSION['user_id'] = $user['id'];
+        header("Location: homepage.php");
+        exit();
+
+        // echo "Welcome, " . $user['username'] . "!";
+    } else {
+        $error = 'Invalid email or password.';
+    }
+}
+?>
 <!DOCTYPE html>
 <html class="no-js"> <!--<![endif]-->
 	<head>
@@ -91,21 +117,25 @@
 									 <div role="tabpanel" class="tab-pane active" id="flights">
                                         <center><h4 style="font-weight: bold; color: orange;">LOGIN NOW</h4></center>
 										<div class="row">
+                                            <center><?php if ($error) echo "<p style='color: red;'>$error</p>"; ?>
+                                            </center>
+                                            <form method="POST" action="login.php">
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
-													<label for="username">Username:</label>
-													<input type="text" class="form-control" id="username" placeholder="Username"/>
+													<label for="email">Email:</label>
+													<input type="text" name="email" class="form-control" id="email" placeholder="Email"/>
 												</div>
 											</div>
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
 													<label for="password">Password:</label>
-													<input type="text" class="form-control" id="password" placeholder="Password"/>
+													<input type="text" name="password" class="form-control" id="password" placeholder="Password"/>
 												</div>
 											</div>
 											<div class="col-xs-12">
 												<input type="submit" class="btn btn-primary btn-block" value="Sign in">
 											</div>
+                                            </form>
                                             <a href="register.php">New User?</a>
 										</div>
 									 </div>
