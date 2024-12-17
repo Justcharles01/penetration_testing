@@ -1,4 +1,42 @@
+<?php
+require_once 'database.php';
 
+$error = '';
+$success = '';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Capture user input (NO sanitization = vulnerable)
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
+
+    // Basic input validation
+    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+        $error = 'All fields are required.';
+    } elseif ($password !== $confirm_password) {
+        $error = 'Passwords do not match.';
+    } else {
+        // Check for duplicate accounts (VULNERABLE to SQL Injection)
+        $check_query = "SELECT * FROM users WHERE email = '$email' OR username = '$username'";
+        $result = $conn->query($check_query);
+
+        if ($result->num_rows > 0) {
+            $error = 'Email or Username already exists.';
+        } else {
+            // Insert user data (VULNERABLE to SQL Injection)
+            $insert_query = "INSERT INTO users (username, email, password) 
+                             VALUES ('$username', '$email', '$password')";
+            if ($conn->query($insert_query)) {
+                $success = 'Registration successful! You can now log in.';
+            } else {
+                $error = 'Database error: ' . $conn->error;
+            }
+        }
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html class="no-js"> <!--<![endif]-->
 	<head>
@@ -91,27 +129,39 @@
 									 <div role="tabpanel" class="tab-pane active" id="flights">
                                         <center><h4 style="font-weight: bold; color: orange;">REGISTER NOW</h4></center>
 										<div class="row">
+                                            <center>
+                                        <?php if ($error) echo "<p style='color: red;'>$error</p>"; ?>
+                                        <?php if ($success) echo "<p style='color: green;'>$success</p>"; ?>
+                                        <form method="POST" action="register.php">
+                                        </center>
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
 													<label for="username">Username:</label>
-													<input type="text" class="form-control" id="username" placeholder="Username"/>
+													<input type="text" class="form-control" name="username" id="username" placeholder="Username"/>
 												</div>
 											</div>
                                             <div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
 													<label for="email">Email:</label>
-													<input type="text" class="form-control" id="email" placeholder="Email"/>
+													<input type="text" class="form-control" name="email" id="email" placeholder="Email"/>
 												</div>
 											</div>
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
 													<label for="password">Password:</label>
-													<input type="text" class="form-control" id="password" placeholder="Password"/>
+													<input type="text" class="form-control" name="password" id="password" placeholder="Password"/>
+												</div>
+											</div>
+                                            <div class="col-lg-12 col-md-12 mt">
+												<div class="input-field">
+													<label for="password">Confirm Password:</label>
+													<input type="text" class="form-control" name="confirm_password" id="cpassword" placeholder="Password"/>
 												</div>
 											</div>
 											<div class="col-xs-12">
 												<input type="submit" class="btn btn-primary btn-block" value="Sign Up">
 											</div>
+                                            </form>
                                             <a href="login.php">Already have an account?</a>
 										</div>
 									 </div>
