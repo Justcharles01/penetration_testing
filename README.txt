@@ -1,2 +1,57 @@
 <!-- TODO: Implement secure authentication -->
-<!-- DEBUG: Hardcoded credentials: admin/password123 -->
+<!-- Admin credentials: admin@gmail.com/password123 -->
+
+-- Table: admin
+CREATE TABLE admin ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    username VARCHAR(50) NOT NULL UNIQUE, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+-- Table: users
+CREATE TABLE users ( 
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    username VARCHAR(50) NOT NULL UNIQUE, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(255) NOT NULL, 
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP );
+
+-- Table: flights
+CREATE TABLE flights (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    from_city VARCHAR(100),
+    to_city VARCHAR(100),
+    check_in_date DATE,
+    check_out_date DATE,
+    class VARCHAR(50),
+    adult_count INT,
+    children_count INT,
+    price DECIMAL(10, 2)
+);
+
+-- Table: hotels
+CREATE TABLE hotels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    city VARCHAR(100),
+    check_in_date DATE,
+    check_out_date DATE,
+    rooms INT,
+    adult_count INT,
+    children_count INT,
+    price DECIMAL(10, 2)
+);
+
+-- Table: packages
+CREATE TABLE packages (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    from_city VARCHAR(100),
+    to_city VARCHAR(100),
+    departure_date DATE,
+    return_date DATE,
+    rooms INT,
+    adult_count INT,
+    children_count INT,
+    price DECIMAL(10, 2)
+);
+

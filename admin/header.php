@@ -2,7 +2,7 @@
 session_start();
 
 // Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
+if (!isset($_SESSION['admin_id'])) {
     header("Location: login.php");
     exit();
 }
@@ -36,30 +36,26 @@ if (!isset($_SESSION['user_id'])) {
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="../css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="../css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<!-- Superfish -->
-	<link rel="stylesheet" href="css/superfish.css">
+	<link rel="stylesheet" href="../css/superfish.css">
 	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="../css/magnific-popup.css">
 	<!-- Date Picker -->
-	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" href="../css/bootstrap-datepicker.min.css">
 	<!-- CS Select -->
-	<link rel="stylesheet" href="css/cs-select.css">
-	<link rel="stylesheet" href="css/cs-skin-border.css">
+	<link rel="stylesheet" href="../css/cs-select.css">
+	<link rel="stylesheet" href="../css/cs-skin-border.css">
 	
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 
 
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+	<script src="../js/modernizr-2.6.2.min.js"></script>
 
 	</head>
 	<body>
@@ -75,15 +71,7 @@ if (!isset($_SESSION['user_id'])) {
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="home.php">Home</a></li>
-							<li>
-								<a href="vacation.html" class="fh5co-sub-ddown">Vacations</a>
-							
-							</li>
-							<li><a href="flight.html">Flights</a></li>
-							<li><a href="hotel.html">Hotel</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="contact.html">Contact</a></li>
-                            <li><a href="logout.php">Logout</a></li>
+                            <li><a href="../logout.php">Logout</a></li>
 						</ul>
 					</nav>
 				</div>

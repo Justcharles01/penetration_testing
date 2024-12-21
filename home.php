@@ -1,4 +1,21 @@
-<?php include_once('header.php'); ?>
+<?php include_once('header.php'); 
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $from = $_POST['from'];
+    $to = $_POST['to'];
+    $check_in = $_POST['check_in'];
+    $check_out = $_POST['check_out'];
+
+    $query = "SELECT * FROM flights WHERE from_city='$from' AND to_city='$to' 
+              AND check_in_date='$check_in' AND check_out_date='$check_out'";
+    $result = mysqli_query($conn, $query);
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "Flight: " . $row['from_city'] . " to " . $row['to_city'] . " - Price: $" . $row['price'] . "<br>";
+    }
+}
+?>
 <div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">

@@ -1,6 +1,6 @@
 
 <?php
-require_once 'database.php';
+require_once '../database.php';
 session_start();
 $error = '';
 
@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
 
     // Check user credentials
-    $query = "SELECT * FROM users WHERE email = '$email' AND password = '$password'";
+    $query = "SELECT * FROM admin WHERE email = '$email' AND password = '$password'";
     $result = $conn->query($query);
 
     if ($result && $result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['admin_id'] = $user['id'];
         header("Location: home.php");
         exit();
 
@@ -54,26 +54,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
 	
 	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="../css/animate.css">
 	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
+	<link rel="stylesheet" href="../css/icomoon.css">
 	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="../css/bootstrap.css">
 	<!-- Superfish -->
-	<link rel="stylesheet" href="css/superfish.css">
+	<link rel="stylesheet" href="../css/superfish.css">
 	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="../css/magnific-popup.css">
 	<!-- Date Picker -->
-	<link rel="stylesheet" href="css/bootstrap-datepicker.min.css">
+	<link rel="stylesheet" href="../css/bootstrap-datepicker.min.css">
 	<!-- CS Select -->
-	<link rel="stylesheet" href="css/cs-select.css">
-	<link rel="stylesheet" href="css/cs-skin-border.css">
+	<link rel="stylesheet" href="../css/cs-select.css">
+	<link rel="stylesheet" href="../css/cs-skin-border.css">
 	
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 
 
 	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
+	<script src="../js/modernizr-2.6.2.min.js"></script>
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
@@ -92,9 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="./">Home</a></li>
-							
-							<li><a href="register.php">Sign-up</a></li>
+							<!-- <li class="active"><a href="./">Home</a></li> -->
 						</ul>
 					</nav>
 				</div>
@@ -115,11 +113,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 								   <!-- Tab panes -->
 									<div class="tab-content">
 									 <div role="tabpanel" class="tab-pane active" id="flights">
-                                        <center><h4 style="font-weight: bold; color: orange;">LOGIN NOW</h4></center>
+                                        <center><h4 style="font-weight: bold; color: orange;">ADMIN LOGIN</h4></center>
 										<div class="row">
                                             <center><?php if ($error) echo "<p style='color: red;'>$error</p>"; ?>
                                             </center>
-                                            <form method="POST" action="login.php">
+                                            <form method="POST" action="index.php">
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
 													<label for="email">Email:</label>
@@ -136,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 												<input type="submit" class="btn btn-primary btn-block" value="Sign in">
 											</div>
                                             </form>
-                                            <a href="register.php">New User?</a>
 										</div>
 									 </div>
 									</div>
@@ -230,31 +227,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<!-- jQuery -->
 
 
-	<script src="js/jquery.min.js"></script>
+	<script src="../js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
+	<script src="../js/jquery.easing.1.3.js"></script>
 	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
+	<script src="../js/bootstrap.min.js"></script>
 	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<script src="js/sticky.js"></script>
+	<script src="../js/jquery.waypoints.min.js"></script>
+	<script src="../js/sticky.js"></script>
 
 	<!-- Stellar -->
-	<script src="js/jquery.stellar.min.js"></script>
+	<script src="../js/jquery.stellar.min.js"></script>
 	<!-- Superfish -->
-	<script src="js/hoverIntent.js"></script>
-	<script src="js/superfish.js"></script>
+	<script src="../js/hoverIntent.js"></script>
+	<script src="../js/superfish.js"></script>
 	<!-- Magnific Popup -->
-	<script src="js/jquery.magnific-popup.min.js"></script>
-	<script src="js/magnific-popup-options.js"></script>
+	<script src="../js/jquery.magnific-popup.min.js"></script>
+	<script src="../js/magnific-popup-options.js"></script>
 	<!-- Date Picker -->
-	<script src="js/bootstrap-datepicker.min.js"></script>
+	<script src="../js/bootstrap-datepicker.min.js"></script>
 	<!-- CS Select -->
-	<script src="js/classie.js"></script>
-	<script src="js/selectFx.js"></script>
+	<script src="../js/classie.js"></script>
+	<script src="../js/selectFx.js"></script>
 	
 	<!-- Main JS -->
-	<script src="js/main.js"></script>
+	<script src="../js/main.js"></script>
 
 	</body>
 </html>
