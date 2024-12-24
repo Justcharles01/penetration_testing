@@ -1,9 +1,10 @@
 <?php
 session_start();
+include_once('../database.php'); 
 
 // Check if user is logged in
 if (!isset($_SESSION['admin_id'])) {
-    header("Location: login.php");
+    header("Location: ./");
     exit();
 }
 ?>
@@ -71,7 +72,7 @@ if (!isset($_SESSION['admin_id'])) {
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="home.php">Home</a></li>
-                            <li><a href="../logout.php">Logout</a></li>
+                            <li><a href="logout.php">Logout</a></li>
 						</ul>
 					</nav>
 				</div>
