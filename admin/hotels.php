@@ -1,20 +1,19 @@
 <?php
-// flights.php
+// Hotels.php
 include_once('header.php'); // Include database connection
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $from = $_POST['from_city'];
-        $to = $_POST['to_city'];
+        $city = $_POST['city'];
         $check_in = $_POST['check_in_date'];
         $check_out = $_POST['check_out_date'];
-        $class = $_POST['class'];
+        $rooms = $_POST['rooms'];
         $adults = $_POST['adults'];
         $children = $_POST['children'];
         $price = $_POST['price'];
 
-        $query = "INSERT INTO flights (from_city, to_city, check_in_date, check_out_date, class, adult_count, children_count, price)
-                  VALUES ('$from', '$to', '$check_in', '$check_out', '$class', '$adults', '$children', '$price')";
+        $query = "INSERT INTO hotels (city, check_in_date, check_out_date, rooms, adult_count, children_count, price)
+                  VALUES ('$city', '$check_in', '$check_out', '$rooms', '$adults', '$children', '$price')";
         if(mysqli_query($conn, $query)==true){
-            echo '<script> alert("Flights Inserted Successfully"); </script>';
+            echo '<script> alert("Hotels Inserted Successfully"); </script>';
         }else{
             echo '<script> alert("Error Inserting, Try Later"); </script>';
         }
@@ -24,9 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // Handle delete request
 if (isset($_GET['delete_id'])) {
     $id = $_GET['delete_id'];
-    $delete_query = "DELETE FROM flights WHERE id='$id'";
+    $delete_query = "DELETE FROM hotels WHERE id='$id'";
     mysqli_query($conn, $delete_query);
-    header('Location: flights.php');
+    header('Location: hotels.php');
     exit;
 }
 ?>
@@ -74,52 +73,46 @@ if (isset($_GET['delete_id'])) {
         }
     </style>
 
-    <h1>Manage Flights</h1>
+    <h1>Manage Hotels</h1>
 
-    <!-- Add Flight Button -->
-    <button id="addFlightBtn" class="btn btn-primary">Add Flight</button>
+    <!-- Add Hotel Button -->
+    <button id="addHotelBtn" class="btn btn-primary">Add Hotel</button>
 
-    <!-- Modal for Adding Flight -->
-    <div id="addFlightModal" class="modal">
+    <!-- Modal for Adding Hotel -->
+    <div id="addHotelModal" class="modal">
         <div class="modal-content">
             <span class="close" id="closeModal">&times;</span>
-            <h2>Add New Flight</h2>
-            <form method="POST" action="flights.php">
-                <label for="from_city">From:</label>
-                <input class="form-control" type="text" name="from_city" required><br>
-                <label for="to_city">To:</label>
-                <input  class="form-control" type="text" name="to_city" required><br>
-                <label for="check_in_date">Check-In:</label>
+            <h2>Add New Hotel</h2>
+            <form method="POST" action="hotels.php">
+                <label for="from_city">City:</label>
+                <input class="form-control" type="text" name="city" required><br>
+               <label for="check_in_date">Check-In:</label>
                 <input class="form-control" type="date" name="check_in_date" required><br>
                 <label for="check_out_date">Check-Out:</label>
                 <input  class="form-control" type="date" name="check_out_date" required><br>
-                <label for="class">Class:</label>
-                <select  class="form-control" name="class">
-                    <option value="Economy">Economy</option>
-                    <option value="Business">Business</option>
-                    <option value="First">First</option>
-                </select><br>
+                <label for="check_out_date">Rooms:</label>
+                <input  class="form-control" type="number" name="rooms" required><br>
+            
                 <label for="adults">Adults:</label>
                 <input  class="form-control" type="number" name="adults" min="1" required><br>
                 <label for="children">Children:</label>
                 <input  class="form-control" type="number" name="children" min="0" required><br>
                 <label for="price">Price:</label>
                 <input  class="form-control" type="number" name="price" step="0.01" required><br><br>
-                <button type="submit" class="btn btn-primary">Add Flight</button>
+                <button type="submit" class="btn btn-primary">Add Hotel</button>
             </form>
         </div>
     </div>
 
-    <!-- Flights Table -->
+    <!-- Hotels Table -->
     <table class="table table-responsive">
         <thead>
             <tr>
                 <th>#</th>
-                <th>From</th>
-                <th>To</th>
+                <th>City</th>
                 <th>Check-In</th>
                 <th>Check-Out</th>
-                <th>Class</th>
+                <th>Rooms</th>
                 <th>Adults</th>
                 <th>Children</th>
                 <th>Price</th>
@@ -129,36 +122,35 @@ if (isset($_GET['delete_id'])) {
         <tbody>
             <?php 
             $count = 1;
-            // Fetch flights data in descending order
-            $query = "SELECT * FROM flights ORDER BY id DESC";
+            // Fetch Hotels data in descending order
+            $query = "SELECT * FROM hotels ORDER BY id DESC";
             $result = mysqli_query($conn, $query);
             if(mysqli_num_rows($result) > 0){
             while ($row = mysqli_fetch_assoc($result)) { ?>
                 <tr>
                     <td><?php echo $count++; ?></td>
-                    <td><?php echo $row['from_city']; ?></td>
-                    <td><?php echo $row['to_city']; ?></td>
+                    <td><?php echo $row['city']; ?></td>
                     <td><?php echo $row['check_in_date']; ?></td>
                     <td><?php echo $row['check_out_date']; ?></td>
-                    <td><?php echo $row['class']; ?></td>
+                    <td><?php echo $row['rooms']; ?></td>
                     <td><?php echo $row['adult_count']; ?></td>
                     <td><?php echo $row['children_count']; ?></td>
                     <td><?php echo $row['price']; ?></td>
                     <td>
-                        <a href="edit_flight.php?id=<?php echo $row['id']; ?>">Edit</a> |
-                        <a href="flights.php?delete_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this flight?');">Delete</a>
+                        <a href="edit_hotel.php?id=<?php echo $row['id']; ?>">Edit</a> |
+                        <a href="hotels.php?delete_id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this hotel?');">Delete</a>
                     </td>
                 </tr>
             <?php } } else{
-                echo 'No Flights records';
+                echo 'No Hotel records';
             } ?>
         </tbody>
     </table>
 
     <script>
         // Modal functionality
-        const modal = document.getElementById('addFlightModal');
-        const btn = document.getElementById('addFlightBtn');
+        const modal = document.getElementById('addHotelModal');
+        const btn = document.getElementById('addHotelBtn');
         const span = document.getElementById('closeModal');
 
         btn.onclick = function() {
