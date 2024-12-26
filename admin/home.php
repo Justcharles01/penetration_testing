@@ -13,7 +13,13 @@
 							<div class="desc">
 								<span></span>
 								<h3>Total Users</h3>
-								<span class="price">200</span>
+								<span class="price">
+								<?php
+									$query = "SELECT * FROM users";
+									$result = mysqli_query($conn, $query);
+									echo mysqli_num_rows($result);
+									?>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -32,8 +38,14 @@
 							<div class="desc">
 								<span></span>
 								<h3>Total Flights</h3>
-								<span class="price">50</span>
-								<a class="btn btn-primary btn-outline" href="#">View Now <i class="icon-arrow-right22"></i></a>
+								<span class="price">
+								<?php
+									$query = "SELECT * FROM flights";
+									$result = mysqli_query($conn, $query);
+									echo mysqli_num_rows($result);
+									?>
+								</span>
+								<a class="btn btn-primary btn-outline" href="flights.php">View Now <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
@@ -42,8 +54,14 @@
 							<div class="desc">
 								<span></span>
 								<h3>Total Hotels</h3>
-								<span class="price">200</span>
-								<a class="btn btn-primary btn-outline" href="#">View Now <i class="icon-arrow-right22"></i></a>
+								<span class="price">
+									<?php
+									$query = "SELECT * FROM hotels";
+									$result = mysqli_query($conn, $query);
+									echo mysqli_num_rows($result);
+									?>
+								</span>
+								<a class="btn btn-primary btn-outline" href="hotels.php">View Now <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
