@@ -34,24 +34,11 @@ CREATE TABLE flights (
 CREATE TABLE hotels (
     id INT AUTO_INCREMENT PRIMARY KEY,
     city VARCHAR(100),
+    name VARCHAR(200),
     check_in_date DATE,
     check_out_date DATE,
     rooms INT,
-    adult_count INT,
-    children_count INT,
     price DECIMAL(10, 2)
 );
 
--- Table: packages
-CREATE TABLE packages (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    from_city VARCHAR(100),
-    to_city VARCHAR(100),
-    departure_date DATE,
-    return_date DATE,
-    rooms INT,
-    adult_count INT,
-    children_count INT,
-    price DECIMAL(10, 2)
-);
 
