@@ -1,4 +1,5 @@
 <?php
+include_once('database.php');
 session_start();
 
 // Check if user is logged in
@@ -75,13 +76,8 @@ if (!isset($_SESSION['user_id'])) {
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
 							<li class="active"><a href="home.php">Home</a></li>
-							<li>
-								<a href="vacation.html" class="fh5co-sub-ddown">Vacations</a>
-							
-							</li>
-							<li><a href="flight.html">Flights</a></li>
-							<li><a href="hotel.html">Hotel</a></li>
-							<li><a href="blog.html">Blog</a></li>
+							<li><a href="flights.php">Flights</a></li>
+							<li><a href="hotels.php">Hotel</a></li>
 							<li><a href="contact.html">Contact</a></li>
                             <li><a href="logout.php">Logout</a></li>
 						</ul>

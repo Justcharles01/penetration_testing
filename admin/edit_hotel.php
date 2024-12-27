@@ -14,20 +14,18 @@ if (isset($_GET['id'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id = $_POST['id'];
     $city = $_POST['city'];
+    $name = $_POST['name'];
     $check_in_date = $_POST['check_in_date'];
     $check_out_date = $_POST['check_out_date'];
     $rooms = $_POST['rooms'];
-    $adults = $_POST['adults'];
-    $children = $_POST['children'];
     $price = $_POST['price'];
 
     $update_query = "UPDATE hotels SET 
         city='$city', 
+        name='$name', 
         check_in_date='$check_in_date', 
         check_out_date='$check_out_date', 
         rooms='$rooms', 
-        adult_count='$adults', 
-        children_count='$children', 
         price='$price' 
         WHERE id='$id'";
 
@@ -46,17 +44,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="hidden" name="id" value="<?php echo $hotel['id']; ?>">
            <label for="city">City:</label>
             <input class="form-control" type="text" name="city" value="<?php echo $hotel['city']; ?>" required><br>
+            <label for="city">Name:</label>
+            <input class="form-control" type="text" name="name" value="<?php echo $hotel['name']; ?>" required><br>
             <label for="check_in_date">Check-In:</label>
             <input class="form-control" type="date" name="check_in_date" value="<?php echo $hotel['check_in_date']; ?>" required><br>
             <label for="check_out_date">Check-Out:</label>
             <input class="form-control" type="date" name="check_out_date" value="<?php echo $hotel['check_out_date']; ?>" required><br>
             <label for="adults">Rooms:</label>
             <input class="form-control" type="number" name="rooms" min="1" value="<?php echo $hotel['rooms']; ?>" required><br>
-            <label for="adults">Adults:</label>
-            <input class="form-control" type="number" name="adults" min="1" value="<?php echo $hotel['adult_count']; ?>" required><br>
-            <label for="children">Children:</label>
-            <input class="form-control" type="number" name="children" min="0" value="<?php echo $hotel['children_count']; ?>" required><br>
-            <label for="price">Price:</label>
+           <label for="price">Price:</label>
             <input class="form-control" type="number" name="price" step="0.01" value="<?php echo $hotel['price']; ?>" required><br><br>
             <button type="submit" class="btn btn-primary">Update Hotel</button>
         </form>
