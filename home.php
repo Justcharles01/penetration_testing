@@ -147,11 +147,7 @@ include_once('header.php');
 														<th>ID</th>
 														<th>From</th>
 														<th>To</th>
-														<th>Check-In</th>
-														<th>Check-Out</th>
 														<th>Class</th>
-														<th>Adults</th>
-														<th>Children</th>
 														<th>Price</th>
 														<th>Action</th>
 													</tr>
@@ -162,12 +158,8 @@ include_once('header.php');
 															<td><?php echo $row['id']; ?></td>
 															<td><?php echo $row['from_city']; ?></td>
 															<td><?php echo $row['to_city']; ?></td>
-															<td><?php echo $row['check_in_date']; ?></td>
-															<td><?php echo $row['check_out_date']; ?></td>
 															<td><?php echo $row['class']; ?></td>
-															<td><?php echo $row['adult_count']; ?></td>
-															<td><?php echo $row['children_count']; ?></td>
-															<td>$<?php echo $row['price']; ?></td>
+															<td>$<?php echo number_format($row['price']); ?></td>
 															<td><button class="action-button" onclick="bookNow('flight', <?php echo $row['id']; ?>)">Book Now</button></td>
 														</tr>
 													<?php } ?>

@@ -106,7 +106,7 @@ include_once('header.php'); // Include database connection
                     <td><?php echo $row['rooms']; ?></td>
                     <td><?php echo number_format($row['price']); ?></td>
                     <td>
-                    <button class="btn btn-primary">Book Hotel</button>
+                    <a href="book_hotel.php?id=<?php echo $row['id']; ?>" class="btn btn-primary">Book Hotel</a>
                 </td>
                 </tr>
             <?php } } else{

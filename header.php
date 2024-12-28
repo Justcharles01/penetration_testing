@@ -4,7 +4,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 ?>
@@ -75,10 +75,11 @@ if (!isset($_SESSION['user_id'])) {
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
-							<li class="active"><a href="home.php">Home</a></li>
+						<li class="active"><a href="home.php">Hi, <?php echo $_SESSION['user_name']; ?></a></li>
+							<li><a href="home.php">Home</a></li>
 							<li><a href="flights.php">Flights</a></li>
 							<li><a href="hotels.php">Hotel</a></li>
-							<li><a href="contact.html">Contact</a></li>
+							<li><a href="bookings.php">Bookings</a></li>
                             <li><a href="logout.php">Logout</a></li>
 						</ul>
 					</nav>

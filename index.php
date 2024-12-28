@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($result && $result->num_rows > 0) {
         $user = $result->fetch_assoc();
         $_SESSION['user_id'] = $user['id'];
+		$_SESSION['user_name'] = $user['username'];
         header("Location: home.php");
         exit();
 
@@ -119,7 +120,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 										<div class="row">
                                             <center><?php if ($error) echo "<p style='color: red;'>$error</p>"; ?>
                                             </center>
-                                            <form method="POST" action="login.php">
+                                            <form method="POST" action="index.php">
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
 													<label for="email">Email:</label>

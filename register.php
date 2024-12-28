@@ -162,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 												<input type="submit" class="btn btn-primary btn-block" value="Sign Up">
 											</div>
                                             </form>
-                                            <a href="login.php">Already have an account?</a>
+                                            <a href="index.php">Already have an account?</a>
 										</div>
 									 </div>
 									</div>

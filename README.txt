@@ -41,4 +41,10 @@ CREATE TABLE hotels (
     price DECIMAL(10, 2)
 );
 
+CREATE TABLE bookings (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    type_id INT NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 

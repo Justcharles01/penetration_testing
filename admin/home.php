@@ -28,7 +28,13 @@
 							<div class="desc">
 								<span></span>
 								<h3>Total Bookings</h3>
-								<span class="price">120</span>
+								<span class="price">
+								<?php
+									$query = "SELECT * FROM bookings";
+									$result = mysqli_query($conn, $query);
+									echo mysqli_num_rows($result);
+									?>
+								</span>
 								<a class="btn btn-primary btn-outline" href="#">View Now <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
@@ -62,16 +68,6 @@
 									?>
 								</span>
 								<a class="btn btn-primary btn-outline" href="hotels.php">View Now <i class="icon-arrow-right22"></i></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
-						<div href="#"><img src="../images/place-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
-							<div class="desc">
-								<span></span>
-								<h3>Total Packages</h3>
-								<span class="price">65</span>
-								<a class="btn btn-primary btn-outline" href="#">View Now <i class="icon-arrow-right22"></i></a>
 							</div>
 						</div>
 					</div>
