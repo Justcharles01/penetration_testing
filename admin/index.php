@@ -74,10 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	<!-- Modernizr JS -->
 	<script src="../js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+
 
 	</head>
 	<body>
@@ -100,7 +97,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		</header>
 
 		<!-- end:header-top -->
-	
+		<!-- Admin credentials: admin@gmail.com/password123 -->
+		
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
 			<div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(images/cover_bg_1.jpg);">

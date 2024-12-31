@@ -4,8 +4,8 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
+    // header("Location: index.php");
+    // exit();
 }
 ?>
 <!DOCTYPE html>
