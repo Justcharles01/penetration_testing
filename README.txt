@@ -1,5 +1,5 @@
 <!-- TODO: Implement secure authentication -->
-<!-- Admin credentials: admin@gmail.com/password123 -->
+<!-- Admin credentials: admin@gmail.com/12345 -->
 
 -- Table: admin
 CREATE TABLE admin ( 
@@ -48,3 +48,18 @@ CREATE TABLE bookings (
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+INSERT INTO `admin` (`id`, `username`, `email`, `password`, `created_at`) VALUES
+(1, 'admin', 'admin@gmail.com', 'password123', '2024-12-21 09:25:53');
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`) VALUES
+(1, 'tester', 'testing@gmail.com', '12345', '2024-12-17 05:07:52');
+
+INSERT INTO `hotels` (`id`, `city`, `name`, `check_in_date`, `check_out_date`, `rooms`, `price`) VALUES
+(1, 'atlanta', 'ATL Home', '2024-12-18', '2025-01-03', 33, 23000.00);
+
+INSERT INTO `flights` (`id`, `from_city`, `to_city`, `check_in_date`, `check_out_date`, `class`, `adult_count`, `children_count`, `price`) VALUES
+(2, 'Dubai', 'New York', '2024-12-05', '2025-01-07', 'Business', 26, 6, 45000.00);
+
+INSERT INTO `bookings` (`booking_id`, `type_id`, `type`, `user_id`, `date`) VALUES
+(1, 2, 'flight', 1, '2024-12-28 07:31:06'),
+(2, 1, 'hotel', 1, '2024-12-28 07:53:07');

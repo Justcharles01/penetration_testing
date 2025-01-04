@@ -97,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		</header>
 
 		<!-- end:header-top -->
-		<!-- Admin credentials: admin@gmail.com/password123 -->
+		<!-- Admin credentials: admin@gmail.com/12345 -->
 
 		<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
