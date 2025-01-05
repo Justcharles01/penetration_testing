@@ -4,7 +4,7 @@ include_once('database.php');
 $error = '';
 $success = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST['register'])) {
     // Capture user input
     $username = $_POST['username'];
     $email = $_POST['email'];
@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <center>
                                         <?php if ($error) echo "<p style='color: red;'>$error</p>"; ?>
                                         <?php if ($success) echo "<p style='color: green;'>$success</p>"; ?>
-                                        <form method="POST" action="register.php">
+                                        <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">
                                         </center>
 											<div class="col-lg-6 col-md-6 mt">
 												<div class="input-field">
@@ -170,7 +170,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 												</div>
 											</div>
 											<div class="col-xs-12">
-												<input type="submit" class="btn btn-primary btn-block" value="Sign Up">
+												<input type="submit" name="register" class="btn btn-primary btn-block" value="Sign Up">
 											</div>
                                             </form>
                                             <a href="index.php">Already have an account?</a>
