@@ -65,3 +65,5 @@ INSERT INTO `flights` (`id`, `from_city`, `to_city`, `check_in_date`, `check_out
 INSERT INTO `bookings` (`booking_id`, `type_id`, `type`, `user_id`, `date`) VALUES
 (1, 2, 'flight', 1, '2024-12-28 07:31:06'),
 (2, 1, 'hotel', 1, '2024-12-28 07:53:07');
+
+UPDATE `users` SET `fullname` = 'Mr Tester', `phone` = '0938387333' WHERE `users`.`id` = 1;
