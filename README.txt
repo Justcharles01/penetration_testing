@@ -48,7 +48,7 @@ CREATE TABLE bookings (
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-ALTER TABLE `users` ADD `fullname` VARCHAR(200) NOT NULL AFTER `email`, ADD `phone` INT(50) NOT NULL AFTER `fullname`;
+ALTER TABLE `users` ADD `fullname` VARCHAR(200) NOT NULL AFTER `email`, ADD `phone` VARCHAR(100) NOT NULL AFTER `fullname`;
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`, `created_at`) VALUES
 (1, 'admin', 'admin@gmail.com', 'password123', '2024-12-21 09:25:53');
