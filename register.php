@@ -1,6 +1,6 @@
 <?php
-require_once 'database.php';
-
+ob_start();
+include_once('database.php');
 $error = '';
 $success = '';
 
@@ -48,9 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-	
-
-
   	<!-- Facebook and Twitter integration -->
 	<meta property="og:title" content=""/>
 	<meta property="og:image" content=""/>
@@ -131,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 									 <div role="tabpanel" class="tab-pane active" id="flights">
                                         <center><h4 style="font-weight: bold; color: orange;">REGISTER NOW</h4></center>
 										<div class="row">
-                                            <center>
+                                        <center>
                                         <?php if ($error) echo "<p style='color: red;'>$error</p>"; ?>
                                         <?php if ($success) echo "<p style='color: green;'>$success</p>"; ?>
                                         <form method="POST" action="register.php">
@@ -191,7 +188,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		</div>
 		
 
-	
+	<?php ob_end_flush(); ?>
 
 	</div>
 	<!-- END fh5co-page -->
