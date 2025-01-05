@@ -8,11 +8,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Capture user input
     $username = $_POST['username'];
     $email = $_POST['email'];
+	$fullname = $_POST['fullname'];
+	$phone = $_POST['phone'];
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
     // Basic input validation
-    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
+    if (empty($username) || empty($email) || empty($fullname) || empty($phone) || empty($password) || empty($confirm_password)) {
         $error = 'All fields are required.';
     } elseif ($password !== $confirm_password) {
         $error = 'Passwords do not match.';
@@ -25,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Email or Username already exists.';
         } else {
             // Insert user data 
-            $insert_query = "INSERT INTO users (username, email, password) 
-                             VALUES ('$username', '$email', '$password')";
+            $insert_query = "INSERT INTO users (username, email, fullname, phone, password) 
+                             VALUES ('$username', '$email', '$fullname', '$phone', '$password')";
             if ($conn->query($insert_query)) {
                 $success = 'Registration successful! You can now log in.';
             } else {
@@ -134,13 +136,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <?php if ($success) echo "<p style='color: green;'>$success</p>"; ?>
                                         <form method="POST" action="register.php">
                                         </center>
-											<div class="col-lg-12 col-md-12 mt">
+											<div class="col-lg-6 col-md-6 mt">
 												<div class="input-field">
 													<label for="username">Username:</label>
 													<input type="text" class="form-control" name="username" id="username" placeholder="Username"/>
 												</div>
 											</div>
-                                            <div class="col-lg-12 col-md-12 mt">
+                                            <div class="col-lg-6 col-md-6 mt">
 												<div class="input-field">
 													<label for="email">Email:</label>
 													<input type="text" class="form-control" name="email" id="email" placeholder="Email"/>
@@ -148,11 +150,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 											</div>
 											<div class="col-lg-12 col-md-12 mt">
 												<div class="input-field">
+													<label for="fullname">Fullname:</label>
+													<input type="text" class="form-control" name="fullname" id="fullname" placeholder="Full Name"/>
+												</div>
+											</div>
+											<div class="col-lg-12 col-md-12 mt">
+												<div class="input-field">
+													<label for="phone">Phone Number:</label>
+													<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number"/>
+												</div>
+											</div>
+											<div class="col-lg-6 col-md-6 mt">
+												<div class="input-field">
 													<label for="password">Password:</label>
 													<input type="text" class="form-control" name="password" id="password" placeholder="Password"/>
 												</div>
 											</div>
-                                            <div class="col-lg-12 col-md-12 mt">
+                                            <div class="col-lg-6 col-md-6 mt">
 												<div class="input-field">
 													<label for="password">Confirm Password:</label>
 													<input type="text" class="form-control" name="confirm_password" id="cpassword" placeholder="Password"/>
